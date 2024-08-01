@@ -64,7 +64,7 @@ let vowelBonusScorer = function (word) {
 };
 // console.log(vowelBonusScorer("JavaScript"));
 
-let newPointStructure;
+let newPointStructure = transform(oldPointStructure);
 
 let scrabbleScorer;
 
@@ -97,12 +97,25 @@ function scorerPrompt() {
 
 // Simple scoring
 
-function transform() {}
+function transform(obj) {
+  let transformedObj = {};
+  for (pointValue in obj) {
+    for (let i = 0; i < obj[pointValue].length; i++) {
+      // console.log(obj[pointValue][i]);
+      let letter = obj[pointValue][i];
+      // console.log(typeof letter);
+      transformedObj[letter.toLowerCase()] = Number(pointValue);
+    }
+  }
+  return console.log(transformedObj);
+}
+
+// transform(oldPointStructure);
 
 function runProgram() {
-  let word = initialPrompt();
-  let scorer = scorerPrompt();
-  return console.log(`Score for '${word}': ${scorer.scorerFunction(word)}`);
+  // let word = initialPrompt();
+  // let scorer = scorerPrompt();
+  // return console.log(`Score for '${word}': ${scorer.scorerFunction(word)}`);
   // return scorer.scorerFunction(word);
 }
 
